@@ -1,11 +1,27 @@
 <h3>Post Form</h3>
 
-<%= form_tag post_path(@post), method: "put" do %>
+
+<!-- the form_tag requires constant communication with the data base for each element
+you in turn want to use it when you only need a single query.
+<!<%= form_tag post_path(@post), method: "put" do %>
   <label>Post title:</label><br>
   <%= text_field_tag :title, @post.title %><br>
 
   <label>Post Description</label><br>
   <%= text_area_tag :description, @post.description %><br>
-  
+
   <%= submit_tag "Submit Post" %>
-<% end %>
+<% end %> --> -->
+
+<!-- the form_for is more dynamic and uses fewer interactions with the database as well
+as calls on helper methods in the Form_for package in Rails -->
+
+
+<%= form_for(@post) do |f|%>
+<label>Post title:</label><br>
+<%= f.text_field :title%><br>
+
+<label>Post description</label><br>
+<%= f.text_area :description%> <br>
+<%= f.submit %>
+<%end%>
